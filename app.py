@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+import connections
 
 app = Flask(__name__)
 CORS(app)
@@ -12,7 +13,7 @@ def hello_world():
 @app.route("/number-submissions")
 def num_submissions():
   return {
-    "count": 134000
+    "count": connections.count
   }
 
 @app.route("/submissions-time")
