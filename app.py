@@ -15,6 +15,25 @@ def num_submissions():
     "count": 134000
   }
 
+@app.route("/submissions-time")
+def time_submissions():
+  return {
+  "datasets": [
+    {
+      "id": "Submissions",
+      "data": [
+        { "x": "12:00", "y": 82 },
+        { "x": "13:00", "y": 88 },
+        { "x": "14:00", "y": 101 },
+        { "x": "15:00", "y": 97 },
+        { "x": "16:00", "y": 121 },
+        { "x": "17:00", "y": 83 },
+        { "x": "18:00", "y": 59 }
+      ]
+    }
+  ]
+}
+
 @app.route("/early-education-belonging")
 def sense_belonging():
   return {
