@@ -15,5 +15,22 @@ def num_submissions():
     "count": 134000
   }
 
+@app.route("/early-education-belonging")
+def sense_belonging():
+  return {
+    "datasets": [
+      {
+        "id": "GBR",
+        "data": [
+          {
+            "x": 6,
+            "y": 1.1,
+            "submissions": 412
+          }
+        ]
+      }
+    ]
+  }
+
 if __name__ == '__main__':
   app.run()
