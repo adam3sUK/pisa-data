@@ -9,5 +9,11 @@ CORS(app)
 def hello_world():
   return "<p>Hello, world!</p>"
 
+@app.route("/number-submissions")
+def num_submissions():
+  return {
+    "count": 134000
+  }
+
 if __name__ == '__main__':
   app.run()
