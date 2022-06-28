@@ -28,6 +28,26 @@ def sense_belonging():
             "submissions": 412
           }
         ]
+      },
+      {
+        "id": "FRA",
+        "data": [
+          {
+            "x": 5,
+            "y": 0.9,
+            "submissions": 469
+          }
+        ]
+      },
+      {
+        "id": "ESP",
+        "data": [
+          {
+            "x": 6,
+            "y": 0.4,
+            "submissions": 500
+          }
+        ]
       }
     ]
   }
