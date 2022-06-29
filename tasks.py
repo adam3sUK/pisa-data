@@ -14,6 +14,7 @@ app = celery.Celery('tasks')
 
 @app.task
 def update_count(country_code, url):
+  print("I got into the update count function")
   connection = psycopg2.connect(host=url, database=country_code, user='seta', password='defaultUnsafePassword')
   cursor = connection.cursor()
   cursor.execute("SELECT COUNT(id) FROM responses")

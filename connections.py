@@ -11,7 +11,9 @@ class counter():
   def update_count(self):
     try:
       for country_code, url in self.database:
+        print("I got past the for")
         result = tasks.update_count.delay(country_code, url)
+        print("I got past the task")
         while result.status == 'PENDING':
           print("Pending")
         new_count = result.get()
