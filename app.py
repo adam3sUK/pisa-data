@@ -4,8 +4,7 @@ import connections
 import os
 import redis
 
-r = redis.from_url(os.environ.get("REDIS_URL"))
-
+r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 
 
 app = Flask(__name__)
