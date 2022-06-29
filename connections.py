@@ -19,5 +19,9 @@ class counter():
       count += sum(cursor.fetchone())
     self.redis.set("count", count)
 
+    # start a celery task, then immediately continue
+    # return to caller "yeah it's getting sorted"
+
+
   def get_count(self):
     return int(self.redis.get("count"))
