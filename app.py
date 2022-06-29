@@ -4,17 +4,24 @@ import connections
 
 app = Flask(__name__)
 CORS(app)
-
+counter = connections.counter()
 
 @app.route("/")
 def hello_world():
   return "<p>Hello, world!</p>"
 
+@app.route("/number-submissions/update")
+def update():
+  counter.update_count()
+  return "Updated count"
+
 @app.route("/number-submissions")
 def num_submissions():
   return {
-    "count": connections.count
+    "count": counter.count
   }
+
+
 
 @app.route("/submissions-time")
 def time_submissions():
