@@ -13,14 +13,11 @@ app = celery.Celery('tasks')
 #   r.set("count", int(r.get("count")) + 1)
 
 @app.task
-def update_count(db_dict):
-  count = 0
-  for country_code, url in db_dict.items():
-    connection = psycopg2.connect(host=url, database=country_code, user='seta', password='defaultUnsafePassword')
-    cursor = connection.cursor()
-    cursor.execute("SELECT COUNT(id) FROM responses")
-    count += sum(cursor.fetchone())
-  return count
+def update_count(url, country_code):
+  connection = psycopg2.connect(host=url, database=country_code, user='seta', password='defaultUnsafePassword')
+  cursor = connection.cursor()
+  cursor.execute("SELECT COUNT(id) FROM responses")
+  return sum(cursor.fetchone())
 
 app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
                 CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])

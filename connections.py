@@ -10,9 +10,10 @@ class counter():
 
   def update_count(self):
     try:
-      result = tasks.update_count.delay(self.database)
-      new_count = result.get()
-      self.redis.set("count", new_count)
+      for country_code, url in self.database:
+        result = tasks.update_count.delay(country_code, url)
+        new_count = result.get()
+        self.redis.incr("count", new_count)
     except Exception as e:
       print(e)
 
