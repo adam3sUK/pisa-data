@@ -10,7 +10,7 @@ class counter():
       self.redis.set("count", 0)
 
   def update_count(self):
-    self.redis.set("count", self.redis.get("count") + 1)
+    self.redis.set("count", int(self.redis.get("count")) + 1)
     # for k, v in self.database.items():
     #   connection = psycopg2.connect(host=v, database=k, user='seta', password='defaultUnsafePassword')
     #   cursor = connection.cursor()
@@ -18,4 +18,4 @@ class counter():
     #   self.count += sum(cursor.fetchone())
 
   def get_count(self):
-    return self.redis.get("count")
+    return int(self.redis.get("count"))
