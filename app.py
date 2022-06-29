@@ -9,19 +9,15 @@ r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 
 app = Flask(__name__)
 CORS(app)
-counter = connections.counter()
-
-r.set("count", 4)
+counter = connections.counter(r)
 
 @app.route("/")
 def hello_world():
-  print(r.get("count"))
-  return f"<p>Hello, world! {r.get('count')}</p>"
+  return f"<p>Hello, world!</p>"
 
 @app.route("/number-submissions/update")
 def update():
   counter.update_count()
-  print(counter.count)
   return "Updated count"
 
 @app.route("/number-submissions")
