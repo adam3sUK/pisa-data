@@ -13,7 +13,7 @@ counter = connections.counter(r)
 
 @app.route("/")
 def hello_world():
-  add(3, 5, r)
+  add(r, 3, 5)
   return f"<p>Hello, world! {r.get('result')}</p>"
 
 @app.route("/number-submissions/update")
