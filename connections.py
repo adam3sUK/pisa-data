@@ -11,8 +11,6 @@ class counter():
   def update_count(self):
     try:
       result = tasks.update_count.delay(self.database)
-      while result.status == "PENDING":
-        print("Pending")
       count = result.get()
       self.redis.set("count", count)
     except Exception as e:
