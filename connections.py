@@ -11,8 +11,8 @@ class counter():
   def update_count(self):
     try:
       tasks.update_count.delay(self.redis, self.database)
-    except:
-      print("An error has occured in running the Celery task")
+    except Exception as e:
+      print(e)
 
   def get_count(self):
     return int(self.redis.get("count"))
