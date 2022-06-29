@@ -10,6 +10,8 @@ app = Flask(__name__)
 CORS(app)
 counter = connections.counter(r)
 
+
+
 @app.route("/")
 def hello_world():
   return f"<p>Hello, world! {r.get('count')}</p>"
