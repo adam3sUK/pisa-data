@@ -13,7 +13,7 @@ class counter():
       for country_code, url in self.database:
         result = tasks.update_count.delay(country_code, url)
         new_count = result.get()
-        self.redis.incr("count", new_count)
+        self.redis.incrby("count", new_count)
     except Exception as e:
       print(e)
 
