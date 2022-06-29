@@ -1,6 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
 import connections
+import os
+import redis
+
+r = redis.from_url(os.environ.get("REDIS_URL"))
+
 
 app = Flask(__name__)
 CORS(app)
