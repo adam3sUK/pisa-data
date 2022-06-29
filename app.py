@@ -3,8 +3,9 @@ from flask_cors import CORS
 import connections
 import os
 import redis
-r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
+from tasks import add
 
+r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 
 app = Flask(__name__)
 CORS(app)
@@ -12,7 +13,8 @@ counter = connections.counter(r)
 
 @app.route("/")
 def hello_world():
-  return f"<p>Hello, world!</p>"
+  add(3, 5, r)
+  return f"<p>Hello, world! {r.get('result')}</p>"
 
 @app.route("/number-submissions/update")
 def update():
