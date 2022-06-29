@@ -13,12 +13,13 @@ def hello_world():
 @app.route("/number-submissions/update")
 def update():
   counter.update_count()
+  print(counter.count)
   return "Updated count"
 
 @app.route("/number-submissions")
 def num_submissions():
   return {
-    "count": counter.count
+    "count": counter.get_count()
   }
 
 

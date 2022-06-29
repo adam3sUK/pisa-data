@@ -15,3 +15,6 @@ class counter():
     #   cursor = connection.cursor()
     #   cursor.execute("SELECT COUNT(id) FROM responses")
     #   self.count += sum(cursor.fetchone())
+
+  def get_count(self):
+    return self.count
