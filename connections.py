@@ -10,7 +10,7 @@ class counter():
 
   def update_count(self):
     try:
-      tasks.update_count.delay(self.redis, self.database)
+      tasks.update_count.delay(self.database)
     except Exception as e:
       print(e)
 
