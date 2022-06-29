@@ -16,9 +16,8 @@ r.set("count", 4)
 
 @app.route("/")
 def hello_world():
-  r.set("count", 4)
   print(r.get("count"))
-  return "<p>Hello, world!</p>"
+  return f"<p>Hello, world! {r.get('count')}</p>"
 
 @app.route("/number-submissions/update")
 def update():
