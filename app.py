@@ -7,12 +7,17 @@ import redis
 r = redis.from_url(os.environ.get("REDIS_URL"))
 
 
+
 app = Flask(__name__)
 CORS(app)
 counter = connections.counter()
 
+r.set("count", 4)
+
 @app.route("/")
 def hello_world():
+  r.set("count", 4)
+  print(r.get("count"))
   return "<p>Hello, world!</p>"
 
 @app.route("/number-submissions/update")
