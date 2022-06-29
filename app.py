@@ -3,7 +3,6 @@ from flask_cors import CORS
 import connections
 import os
 import redis
-
 r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 
 

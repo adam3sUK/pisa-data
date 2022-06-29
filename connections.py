@@ -8,6 +8,7 @@ class counter():
       self.database = database_objects
       self.redis = redis
       self.redis.set("count", 0)
+      self.update_count()
 
   def update_count(self):
     count = 0
