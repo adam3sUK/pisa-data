@@ -13,11 +13,12 @@ class counter():
       for country_code, url in self.database:
         result = tasks.update_count.delay(country_code, url)
         while result.status == 'PENDING':
-          print("Pedning")
+          print("Pending")
         new_count = result.get()
-        self.redis.incrby("count", new_count)
+        print(new_count)
+        # self.redis.incrby("count", new_count)
     except Exception as e:
-      print(e)
+      print(f"EXCEPTION!!!!! {e}")
 
   def get_count(self):
     return int(self.redis.get("count"))
