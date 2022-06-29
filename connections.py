@@ -1,7 +1,5 @@
-
-
 from databases import database_objects
-import psycopg2
+import tasks
 
 class counter():
   def __init__(self, redis):
@@ -11,17 +9,10 @@ class counter():
       self.update_count()
 
   def update_count(self):
-    count = 0
-    for k, v in self.database.items():
-      connection = psycopg2.connect(host=v, database=k, user='seta', password='defaultUnsafePassword')
-      cursor = connection.cursor()
-      cursor.execute("SELECT COUNT(id) FROM responses")
-      count += sum(cursor.fetchone())
-    self.redis.set("count", count)
-
-    # start a celery task, then immediately continue
-    # return to caller "yeah it's getting sorted"
-
+    try:
+      tasks.update_count(self.redis, self.database)
+    except:
+      print("An error has occured in running the Celery task")
 
   def get_count(self):
     return int(self.redis.get("count"))
