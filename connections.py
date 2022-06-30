@@ -1,5 +1,6 @@
 from databases import database_objects
 import tasks
+from time import time, sleep
 
 class counter():
   def __init__(self, redis):
@@ -11,6 +12,11 @@ class counter():
   def update_count(self):
     try:
       result = tasks.update_count.delay(self.database)
+      while True:
+        sleep(60 - time() % 60)
+        print(result.status)
+        if result.status == 'SUCCESS' or result.status == 'FAILURE':
+          break
       count = result.get()
       self.redis.set("count", count)
     except Exception as e:
