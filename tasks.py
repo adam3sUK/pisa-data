@@ -19,7 +19,7 @@ def update_count(db_dict):
     connection = psycopg2.connect(host=url, database=country_code, user='seta', password='defaultUnsafePassword')
     cursor = connection.cursor()
     cursor.execute("SELECT COUNT(id) FROM responses")
-    return sum(cursor.fetchone())
+    count = sum(cursor.fetchone())
   return count
 
 app.conf.update(BROKER_URL=os.environ['REDIS_URL'],
