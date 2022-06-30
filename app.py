@@ -9,6 +9,8 @@ connection = psycopg2.connect(host='pisa2018.cvruukypsgyb.eu-west-2.rds.amazonaw
 cursor = connection.cursor()
 cursor.execute("SELECT count FROM total_submissions WHERE id = 1")
 count = sum(cursor.fetchone())
+cursor.close()
+connection.close()
 
 @app.route("/")
 def hello_world():
