@@ -3,28 +3,25 @@ from flask_cors import CORS
 import connections
 import os
 import redis
-
+import psycopg2
 r = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 
 app = Flask(__name__)
 CORS(app)
-counter = connections.counter(r)
 
-
+connection = psycopg2.connect(host='pisa2018.cvruukypsgyb.eu-west-2.rds.amazonaws.com', database='postgres', user='postgres', password='dQ4hVXnipUJSMw8')
+cursor = connection.cursor()
+cursor.execute("SELECT count FROM total_submissions WHERE id = 1")
+count = sum(cursor.fetchone())
 
 @app.route("/")
 def hello_world():
-  return f"<p>Hello, world! {r.get('count')}</p>"
-
-@app.route("/number-submissions/update")
-def update():
-  counter.update_count()
-  return "Updated count"
+  return f"<p>Hello, world!</p>"
 
 @app.route("/number-submissions")
 def num_submissions():
   return {
-    "count": counter.get_count()
+    "count": count
   }
 
 
